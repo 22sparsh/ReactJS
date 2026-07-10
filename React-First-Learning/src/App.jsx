@@ -6,11 +6,11 @@ function App() {
     <div className='parent'>
 
       
-    <Card />
-    <Card />
-    <Card />
-    <Card />
-    <Card />
+    <Card user = "Sarah" btnTXT="NTO" />
+    <Card user = "Sparsh" btnTXT="JTO" />
+    <Card user = "Hora" btnTXT="FTO" />
+    <Card user = "Sam" btnTXT="CTO" />
+    
     </div>
   )
 }
