@@ -32,7 +32,6 @@ src/
 │   └── Users.jsx
 │
 ├── App.jsx
-├── index.js
 └── styles.css
 ```
 
