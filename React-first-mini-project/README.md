@@ -1,16 +1,56 @@
-# React + Vite
+# React User Cards
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple React project built to practice **Components** and **Props**. This project displays multiple user profile cards by passing user data as props from a parent component to a reusable `Card` component.
 
-Currently, two official plugins are available:
+## 📌 What I Learned
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Creating reusable React components
+- Passing data using props
+- Rendering multiple components using `map()`
+- Organizing data in an array of objects
+- Basic component-based project structure
 
-## React Compiler
+## 🚀 Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Displays multiple user profile cards
+- Dynamic rendering using an array of user objects
+- Reusable `Card` component
+- Clean and responsive UI
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React
+- JavaScript (ES6+)
+- CSS
+
+## 📂 Project Structure
+
+```
+src/
+│── components/
+│   ├── Card.jsx
+│   └── Users.jsx
+│
+├── App.jsx
+├── index.js
+└── styles.css
+```
+
+## 📖 How It Works
+
+1. User information is stored in an array of objects.
+2. The `Users` component loops through the array using `map()`.
+3. Each user object is passed as props to the reusable `Card` component.
+4. The `Card` component displays the user's image, name, bio, follower count, and project count.
+
+## 🎯 Purpose
+
+This is a beginner-friendly mini project created while learning React fundamentals. The main focus was understanding how **components** and **props** work together to build reusable and maintainable UIs.
+
+## 📸 Preview
+
+![React User Cards](./public/image.png)
+
+## 📄 License
+
+This project is created for learning purposes.
