@@ -1,9 +1,10 @@
 import './App.css'
-
+import Card from './components/Card'
+import Users from './components/Users'
 function App() {
   return (
     <>
-     <h1>HELLO</h1>
+    <Users />
     </>
   )
 }
