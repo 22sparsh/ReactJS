@@ -3,15 +3,16 @@ import Card from './components/Cards/Card'
 
 function App() {
   return (
-    <div className='parent'>
+    <>
 
-      
-    <Card user = "Sarah" btnTXT="NTO" />
-    <Card user = "Sparsh" btnTXT="JTO" />
-    <Card user = "Hora" btnTXT="FTO" />
-    <Card user = "Sam" btnTXT="CTO" />
-    
-    </div>
+      <div className='parent'>
+        <Card user="Sarah" btnTXT="NTO" />
+        <Card user="Sparsh" btnTXT="JTO" />
+        <Card user="Hora" btnTXT="FTO" />
+        <Card user="Sam" btnTXT="CTO" />
+      </div>
+      <h1 className='bg-amber-300'>Hello</h1>
+    </>
   )
 }
 
