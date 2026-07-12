@@ -1,0 +1,24 @@
+.card{
+ width: 350px;
+ background-color: rgba(0, 255, 255, 0.197);
+ border: 2px solid whitesmoke;
+ border-radius: 10%;
+ padding: 20px;
+ text-align: center;
+}
+
+.card img{
+  width: 150px;
+  height: 150px;
+  border-radius: 100%;
+}
+.card p{
+  padding: 10px 0;
+}
+.card button{
+  padding: 10px 20px;
+  color: black;
+  border: none;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.881);
+}
