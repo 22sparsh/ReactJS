@@ -2,7 +2,7 @@ import React from 'react'
 import { Search, Bell, Settings } from "lucide-react";
 const NavBar = () => {
   return (
-   <nav className="flex items-center justify-between px-8 py-5 bg-amber-800">
+   <nav className="flex items-center justify-between px-8 py-5">
       {/* Logo */}
       <div className="flex items-center gap-3">
         <div className="flex h-11 w-11 items-center justify-center rounded-full bg-teal-400">
