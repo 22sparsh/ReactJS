@@ -13,9 +13,10 @@ const BalanceCard = () => {
     <Tbutton status="Recieve"/>
         </div>
 <h1 className='text-xl font-semibold mt-3'>My cards</h1>
-<div className="w-full block h-full bg-amber-100 ">
-  <WCard />
-  <WCard />
+<div className="w-full h-full  gap-1  grid grid-cols-[50%_35%_15%]">
+  <WCard color="#C7DAFF"/>
+  <WCard color="#c0e2d9"/>
+  <div className="h-full flex justify-center items-center w-full bg-black/75 text-5xl font-light text-white rounded-3xl ">+</div>
 </div>
     </div>
   )

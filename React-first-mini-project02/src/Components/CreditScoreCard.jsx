@@ -10,7 +10,7 @@ const CreditScoreCard = () => {
        <div className="relative w-full h-52 flex items-center justify-center">
   <svg
     viewBox="0 0 220 140"
-    className="absolute top-0 w-[530px] h-45"
+    className="absolute top-0 w-132.5 h-45"
     fill="none"
   >
     {/* Red */}

@@ -23,7 +23,7 @@ const Dashboard = () => {
             <SpendingCard />
 
             {/* Money Tips Card */}
-            <div className="rounded-3xl bg-[#dff4ee] p-5 h-full relative overflow-hidden">
+            <div className="rounded-3xl bg-[#c0e2d9] p-5 h-full relative overflow-hidden">
               <h2 className="text-xl font-semibold leading-tight">
                 How To Manage
                 <br />
