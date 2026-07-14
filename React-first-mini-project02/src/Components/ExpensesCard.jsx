@@ -2,7 +2,7 @@ import React from 'react'
 
 const ExpensesCard = () => {
   return (
-    <div>ExpensesCard</div>
+    <div className='bg-[#C7DAFF] h-full flex justify-between flex-col rounded-3xl p-3'>ExpensesCard</div>
   )
 }
 

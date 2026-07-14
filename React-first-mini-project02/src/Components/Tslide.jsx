@@ -15,11 +15,11 @@ const Tslide = (prop) => {
             )}
           </div>
           <div className="">
-            <h1 className='text-base font-bold'>{prop.cname}</h1>
+            <h1 className='text-base font-medium'>{prop.cname}</h1>
             <span className='text-sm'>{prop.t}</span>
           </div>
         </div>
-        <div className="flex items-center justify-center text-sm font-bold">
+        <div className="flex items-center justify-center text-sm font-light">
           <h1>{prop.camt}</h1>
         </div>
       </div>

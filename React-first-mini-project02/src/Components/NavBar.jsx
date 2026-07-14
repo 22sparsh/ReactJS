@@ -6,7 +6,7 @@ const NavBar = () => {
       {/* Logo */}
       <div className="flex items-center gap-3">
         <div className="flex h-11 w-11 items-center justify-center rounded-full bg-teal-400">
-         <i class="fa-solid fa-arrow-trend-up"></i>
+         <i className="fa-solid fa-arrow-trend-up"></i>
         </div>
         <h1 className="text-3xl font-bold text-gray-900">Tarr</h1>
       </div>
