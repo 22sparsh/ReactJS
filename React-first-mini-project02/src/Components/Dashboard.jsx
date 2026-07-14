@@ -9,7 +9,7 @@ import CreditScoreCard from "./CreditScoreCard";
 
 const Dashboard = () => {
   return (
-    <div className="min-h-screen p-6 mt-4">
+    <div className="min-h-screen p-5 mt-4">
       <div className="mx-auto max-w-7xl space-y-6">
         {/* Top Section */}
         <div className="grid grid-cols-12 gap-6">
