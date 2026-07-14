@@ -24,7 +24,7 @@ const Dashboard = () => {
 
             {/* Money Tips Card */}
             <div className="rounded-3xl bg-[#dff4ee] p-5 h-full relative overflow-hidden">
-              <h2 className="text-2xl font-semibold leading-tight">
+              <h2 className="text-xl font-semibold leading-tight">
                 How To Manage
                 <br />
                 Money Well?
@@ -35,9 +35,9 @@ const Dashboard = () => {
               </button>
 
               {/* Decorative circles */}
-              <div className="absolute right-0.5 top-5 w-24 h-24 border border-black/45 rounded-full"></div>
-              <div className="absolute right-0 top-20 w-24 h-24 border border-blue-300 rounded-full"></div>
-              <div className="absolute right-20 bottom-0 w-24 h-24 border border-black/20 rounded-full"></div>
+              <div className="absolute top-3 left-64 w-20 h-20 border-[1.5px] border-black/75 rounded-full"></div>
+              <div className="absolute right-4 top-12 w-20 h-20 border-[1.5px] border-blue-400 rounded-full"></div>
+              <div className="absolute right-6 -top-3 w-20 h-20 border-[1.5px] border-black/75 rounded-full"></div>
             </div>
           </div>
 
