@@ -8,7 +8,7 @@ const SpendingCard = () => {
         <h1 className='text-base font-bold'>Spending</h1>
         <span className='text-xs flex items-center justify-center text-center font-semibold bg-amber-50 p-2.5 rounded-4xl'>Month <i className="fa-solid fa-angle-down ml-0.5"></i></span>
       </div>
-      <div className="p-1.5 flex gap-4">
+      <div className="p-3 flex gap-4">
        <Bar month="Jun" amt={3455}/>
        <Bar month="Jul" amt={34}/>
        <Bar month="Aug" amt={345}/>
