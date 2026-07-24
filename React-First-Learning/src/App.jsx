@@ -1,26 +1,111 @@
 import { useState } from 'react';
 import './App.css'
-import Card from './components/Cards/Card'
 
 function App() {
-  // let a=20;
-  // instead use the useState
-  const [counter, setcounter] = useState(0)
-  function btnclick(){
-    console.log("clicked" );
+  const [Minute, setMinute] = useState(0)
+  const [Hour, setHour] = useState(0)
+  const [Secound, setSecound] = useState(0)
+  const upwork=(whichtime)=>{
+    
+    if(whichtime === setHour ){
+      whichtime(prev => prev+1)
+    }
+    else{
+    whichtime(prev => (prev+1)%60)
+    }
   }
-  function btnclick2(elem){
-    console.log(elem);
+  const downwork=(whichtime)=>{
+    if(whichtime === setHour ){
+      whichtime(prev => Math.max(0, prev - 1))
+    }
+    else{
+    whichtime(prev => Math.max(0, (prev-1)%60))
+    }
   }
-  // function change(){
-  //   a=30;
-  // }
   return (
     <>
-    <h1 className='text-black text-6xl font-extrabold'>{counter}</h1>
-    <button className='bg-amber-50/25 rounded-2xl hover:bg-red-200 cursor-pointer text-black p-2' onClick={()=>{
-      setcounter(counter+1)
-    }}>Click Me!</button>
+      <div className="flex items-center justify-center h-screen bg-[#07051c]">
+        <div className=" flex p-10  flex-col gap-14">
+
+          <div className="flex text-9xl font-bold  items-center gap-12">
+            <div className="flex flex-col justify-center items-center gap-6">
+              <button
+                className="w-6 h-6 bg-white cursor-pointer"
+                style={{
+                  clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)",
+                }}
+                onClick={function (){
+                  upwork(setHour)
+                }}
+              >
+              </button>
+              <span>{Hour}</span>
+              <button
+                className="w-6 h-6 bg-white cursor-pointer"
+                style={{
+                  clipPath: "polygon(0% 0%, 100% 0%, 50% 100%)",
+                }}
+                onClick={function (){
+                  downwork(setHour)
+                }}
+              >
+              </button>
+            </div>
+            <span>:</span>
+            <div className="flex flex-col justify-center items-center gap-6">
+              <button
+                className="w-6 h-6 bg-white cursor-pointer"
+                style={{
+                  clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)",
+                }}
+                onClick={function (){
+                  upwork(setMinute)
+                }}
+              >
+              </button>
+              <span>{Minute}</span>
+              <button
+                className="w-6 h-6 bg-white cursor-pointer"
+                style={{
+                  clipPath: "polygon(0% 0%, 100% 0%, 50% 100%)",
+                }}
+                onClick={function (){
+                  downwork(setMinute)
+                }}
+              >
+              </button>
+            </div>
+            <span>:</span>
+            <div className="flex flex-col justify-center items-center gap-6">
+              <button
+                className="w-6 h-6 bg-white cursor-pointer"
+                style={{
+                  clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)",
+                }}
+                onClick={function (){
+                  upwork(setSecound)
+                }}
+              >
+              </button>
+              <span>{Secound}</span>
+              <button
+                className="w-6 h-6 bg-white cursor-pointer"
+                style={{
+                  clipPath: "polygon(0% 0%, 100% 0%, 50% 100%)",
+                }}
+                onClick={function (){
+                  downwork(setSecound)
+                }}
+              >
+              </button>
+            </div>
+          </div>
+          <div className="flex justify-center items-center">
+            <button className='bg-red-300 text-black pt-3 pb-3 px-6 py-6 rounded-2xl text-6xl'>Start</button>
+          </div>
+
+        </div>
+      </div>
     </>
   )
 }
