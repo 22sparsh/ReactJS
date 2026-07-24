@@ -39,7 +39,7 @@ function App() {
                 }}
               >
               </button>
-              <span>{Hour}</span>
+              <span>{Hour>9?`${Hour}`:`0${Hour}`}</span>
               <button
                 className="w-6 h-6 bg-white cursor-pointer"
                 style={{
@@ -63,7 +63,7 @@ function App() {
                 }}
               >
               </button>
-              <span>{Minute}</span>
+              <span><span>{Minute>9?`${Minute}`:`0${Minute}`}</span></span>
               <button
                 className="w-6 h-6 bg-white cursor-pointer"
                 style={{
@@ -87,7 +87,7 @@ function App() {
                 }}
               >
               </button>
-              <span>{Secound}</span>
+              <span><span>{Secound>9?`${Secound}`:`0${Secound}`}</span></span>
               <button
                 className="w-6 h-6 bg-white cursor-pointer"
                 style={{
