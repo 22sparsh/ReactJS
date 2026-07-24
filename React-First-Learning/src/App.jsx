@@ -2,8 +2,12 @@ import './App.css'
 import Card from './components/Cards/Card'
 
 function App() {
-  function btnclick(elem){
-    console.log("clicked" + elem);
+  function btnclick(){
+    console.log("clicked" );
+  }
+  function btnclick2(elem){
+    console.log(elem);
+    
   }
   return (
     <>
@@ -14,7 +18,9 @@ function App() {
         <Card user="Hora" btnTXT="FTO" />
         <Card user="Sam" btnTXT="CTO" />
       </div>
-      <button className='bg-amber-50/25 rounded-2xl hover:bg-red-200 cursor-pointer text-black p-2' onClick={btnclick}>Click Me!</button>
+      <button className='bg-amber-50/25 rounded-2xl hover:bg-red-200 cursor-pointer text-black p-2' onClick={function (elem){
+        btnclick2(elem.target.innerHTML);
+      }}>Click Me!</button>
     </>
   )
 }
