@@ -5,21 +5,58 @@ function App() {
   const [Minute, setMinute] = useState(0)
   const [Hour, setHour] = useState(0)
   const [Secound, setSecound] = useState(0)
-  const upwork=(whichtime)=>{
-    
-    if(whichtime === setHour ){
-      whichtime(prev => prev+1)
+  const upwork = (whichtime) => {
+    if (whichtime === setHour) {
+      whichtime(prev => prev + 1)
     }
-    else{
-    whichtime(prev => (prev+1)%60)
+    else {
+      whichtime(prev => (prev + 1) % 60)
     }
   }
-  const downwork=(whichtime)=>{
-    if(whichtime === setHour ){
+  const downwork = (whichtime) => {
+    if (whichtime === setHour) {
       whichtime(prev => Math.max(0, prev - 1))
     }
-    else{
-    whichtime(prev => Math.max(0, (prev-1)%60))
+    else {
+      whichtime(prev => Math.max(0, (prev - 1) % 60))
+    }
+  }
+  function timer() {
+  const id = setInterval(() => {
+    setSecound(prevSec => {      
+      if (prevSec <= 1) {
+        setMinute(prevMin=>{
+          console.log(prevMin);
+          
+          if(prevMin <=0){
+            setHour(prevHour =>{
+              if(prevHour <=0){
+                clearInterval(id)
+                return 0;
+              }
+              else{
+                setMinute(59)
+                setSecound(59)
+              }
+              return prevHour-1;
+            })
+            return 0
+          }
+          else{
+            setSecound(59)
+          }
+          return prevMin -1
+        })
+      }
+      return prevSec - 1;
+    });
+  }, 1000);
+}
+
+  const startTimer = () => {
+    
+    if (Minute > 0 || Hour > 0 || Secound > 0) {
+      timer()
     }
   }
   return (
@@ -34,18 +71,18 @@ function App() {
                 style={{
                   clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)",
                 }}
-                onClick={function (){
+                onClick={function () {
                   upwork(setHour)
                 }}
               >
               </button>
-              <span>{Hour>9?`${Hour}`:`0${Hour}`}</span>
+              <span>{Hour > 9 ? `${Hour}` : `0${Hour}`}</span>
               <button
                 className="w-6 h-6 bg-white cursor-pointer"
                 style={{
                   clipPath: "polygon(0% 0%, 100% 0%, 50% 100%)",
                 }}
-                onClick={function (){
+                onClick={function () {
                   downwork(setHour)
                 }}
               >
@@ -58,18 +95,18 @@ function App() {
                 style={{
                   clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)",
                 }}
-                onClick={function (){
+                onClick={function () {
                   upwork(setMinute)
                 }}
               >
               </button>
-              <span><span>{Minute>9?`${Minute}`:`0${Minute}`}</span></span>
+              <span><span>{Minute > 9 ? `${Minute}` : `0${Minute}`}</span></span>
               <button
                 className="w-6 h-6 bg-white cursor-pointer"
                 style={{
                   clipPath: "polygon(0% 0%, 100% 0%, 50% 100%)",
                 }}
-                onClick={function (){
+                onClick={function () {
                   downwork(setMinute)
                 }}
               >
@@ -82,18 +119,18 @@ function App() {
                 style={{
                   clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)",
                 }}
-                onClick={function (){
+                onClick={function () {
                   upwork(setSecound)
                 }}
               >
               </button>
-              <span><span>{Secound>9?`${Secound}`:`0${Secound}`}</span></span>
+              <span><span>{Secound > 9 ? `${Secound}` : `0${Secound}`}</span></span>
               <button
                 className="w-6 h-6 bg-white cursor-pointer"
                 style={{
                   clipPath: "polygon(0% 0%, 100% 0%, 50% 100%)",
                 }}
-                onClick={function (){
+                onClick={function () {
                   downwork(setSecound)
                 }}
               >
@@ -101,7 +138,7 @@ function App() {
             </div>
           </div>
           <div className="flex justify-center items-center">
-            <button className='bg-red-300 text-black pt-3 pb-3 px-6 py-6 rounded-2xl text-6xl'>Start</button>
+            <button className='bg-red-300 text-black pt-3 pb-3 px-6 py-6 rounded-2xl text-6xl cursor-pointer' onClick={startTimer}>Start</button>
           </div>
 
         </div>
