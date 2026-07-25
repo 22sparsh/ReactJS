@@ -3,6 +3,7 @@ import './App.css'
 
 function App() {
   const [Minute, setMinute] = useState(0)
+  const [disabled, setDisabled] = useState(false);
   const [Hour, setHour] = useState(0)
   const [Secound, setSecound] = useState(0)
   const upwork = (whichtime) => {
@@ -32,6 +33,7 @@ function App() {
             setHour(prevHour =>{
               if(prevHour <=0){
                 clearInterval(id)
+                  setDisabled(false);
                 return 0;
               }
               else{
@@ -55,8 +57,9 @@ function App() {
 
   const startTimer = () => {
     
-    if (Minute > 0 || Hour > 0 || Secound > 0) {
+    if ((Minute > 0 || Hour > 0 || Secound > 0)) {
       timer()
+      setDisabled(true);
     }
   }
   return (
@@ -138,7 +141,7 @@ function App() {
             </div>
           </div>
           <div className="flex justify-center items-center">
-            <button className='bg-red-300 text-black pt-3 pb-3 px-6 py-6 rounded-2xl text-6xl cursor-pointer' onClick={startTimer}>Start</button>
+            <button className='bg-red-300 text-black pt-3 pb-3 px-6 py-6 rounded-2xl text-6xl cursor-pointer' onClick={startTimer} disabled={disabled}>Start</button>
           </div>
 
         </div>
