@@ -23,40 +23,38 @@ function App() {
     }
   }
   function timer() {
-  const id = setInterval(() => {
-    setSecound(prevSec => {      
-      if (prevSec <= 1) {
-        setMinute(prevMin=>{
-          console.log(prevMin);
-          
-          if(prevMin <=0){
-            setHour(prevHour =>{
-              if(prevHour <=0){
-                clearInterval(id)
+    const id = setInterval(() => {
+      setSecound(prevSec => {
+        if (prevSec <= 1) {
+          setMinute(prevMin => {
+            if (prevMin <= 0) {
+              setHour(prevHour => {
+                if (prevHour <= 0) {
+                  clearInterval(id)
                   setDisabled(false);
-                return 0;
-              }
-              else{
-                setMinute(59)
-                setSecound(59)
-              }
-              return prevHour-1;
-            })
-            return 0
-          }
-          else{
-            setSecound(59)
-          }
-          return prevMin -1
-        })
-      }
-      return prevSec - 1;
-    });
-  }, 1000);
-}
+                  return 0;
+                }
+                else {
+                  setMinute(59)
+                  setSecound(59)
+                }
+                return prevHour - 1;
+              })
+              return 0
+            }
+            else {
+              setSecound(59)
+            }
+            return prevMin - 1
+          })
+        }
+        return prevSec - 1;
+      });
+    }, 1000);
+  }
 
   const startTimer = () => {
-    
+
     if ((Minute > 0 || Hour > 0 || Secound > 0)) {
       timer()
       setDisabled(true);
