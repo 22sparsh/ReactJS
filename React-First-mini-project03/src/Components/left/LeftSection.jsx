@@ -3,7 +3,6 @@ import Search from '../Utilities/Search';
 
 
 const LeftSection = (prop) => {
-  const iconStyle = "";
 
   let views = [
     {
@@ -30,9 +29,8 @@ const LeftSection = (prop) => {
         <i className="fa-solid fa-wand-magic-sparkles text-xl"></i>
         <h1 className='text-xl font-bold'>NoteBench</h1>
       </div>
-      <div className="text-base  font-medium flex flex-col gap-5">
+      <div className="text-base  font-medium flex flex-col gap-4">
         <h1 className='ml-3 text-base font-black'>Views</h1>
-
         <div className="text-base font-light flex flex-col justify-start items-center gap-3">
           {
             views.map((ele, index) => (
