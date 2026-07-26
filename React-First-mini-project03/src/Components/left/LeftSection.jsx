@@ -25,7 +25,7 @@ const LeftSection = (prop) => {
 
   return (
     <div className='flex flex-col gap-5 bg-gray-200 h-full'>
-      <div className=" flex h-15  justify-start items-center gap-3 p-3 border-b-2 border-gray-900 border-dashed ">
+      <div className=" flex h-15  justify-start items-center gap-3 p-3 border-b-2 border-gray-900 ">
         <i className="fa-solid fa-wand-magic-sparkles text-xl"></i>
         <h1 className='text-xl font-bold'>NoteBench</h1>
       </div>

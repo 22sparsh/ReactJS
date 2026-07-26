@@ -5,9 +5,9 @@ const MidSection = () => {
   const iconStyle = "w-5  text-center text-base ml-2 ";
 
   return (
-    <div className='border-r-2 border-gray-300'>
+    <div className='border-r border-gray-300'>
 
-      <div className="flex flex-col h-fit border-b-2 items-center pb-2  border-gray-200 border-dashed ">
+      <div className="flex flex-col h-fit border-b items-center pb-2  border-gray-200">
 
         <div className=" flex h-fit  w-full justify-between  gap-2 p-3 ">
           <div className="flex justify-center h-fit items-center">
