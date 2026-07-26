@@ -1,25 +1,18 @@
 import { useState } from 'react';
 import './App.css'
+import { useEffect } from 'react';
 
 function App() {
-  const [name, setname] = useState('')
-  const handleSubmit=(e)=>{
-    e.preventDefault()
-    console.log("hello");
-  }
-  
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    document.title = count;
+  }, [count]);
+
   return (
     <>
-    <div className="h-screen w-screen flex justify-center items-center">
-    <form className='flex justify-center items-center flex-col gap-5' onSubmit={(e)=>{handleSubmit(e)}}>
-    <input placeholder='Enter Your Name' type="text" className='bg-blue-300 rounded-2xl p-2 text-black text-4xl'
-    value={name} onChange={(e)=>{
-      setname(e.target.value)
-    }} />  
-
-    <button className='text-4xl bg-red-900 p-4 rounded-2xl'>submit</button>
-    </form>      
-    </div>
+    <button onClick={() => setCount(count + 1)} className='bg-red-200 text-2xl text-black  p-4 active:bg-indigo-700 cursor-pointer'>
+      {count}
+    </button>
     </>
   )
 }
