@@ -30,19 +30,19 @@ const AppLayout = () => {
       content:{}
     }
   ]
-  const [midsectiontopings, setmidsectiontopings] = useState(views[0])
+  const [activeview, setactiveview] = useState(views[0])
   const [prevrefid, setprevrefid] = useState(0)
   const viewsR = useRef({})
   useEffect(() => {
     viewsR.current[prevrefid]?.classList.remove("bg-white");
-    viewsR.current[midsectiontopings.id]?.classList.add("bg-white");
-  }, [midsectiontopings])
+    viewsR.current[activeview.id]?.classList.add("bg-white");
+  }, [activeview])
   
   
     return (
         <div className="grid  text-zinc-800 grid-rows-[1fr_auto] grid-cols-[250px_260px_1fr] bg-white h-screen">
-            <LeftSection views={views} status={setmidsectiontopings}  refrence={viewsR} prevref={setprevrefid} midtop={midsectiontopings} />
-            <MidSection status={midsectiontopings} />
+            <LeftSection views={views} status={setactiveview}  refrence={viewsR} prevref={setprevrefid} midtop={activeview} />
+            <MidSection status={activeview} />
             <Note />
             <div className="col-span-3 border-t-2  border-gray-200">
                 Footer

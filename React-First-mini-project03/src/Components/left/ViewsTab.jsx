@@ -15,7 +15,7 @@ const LeftSection = (prop) => {
       </div>
       <div className="text-base  font-medium flex flex-col gap-4">
         <h1 className='ml-3 text-base font-black'>Views</h1>
-        <div className="text-base font-light flex flex-col justify-start items-center gap-3">
+        <div className="text-base font-light flex flex-col justify-start items-center gap-1">
           {
             prop.views.map((ele, index) => (
               <div
@@ -23,7 +23,7 @@ const LeftSection = (prop) => {
                 ref={(el) => {
                   prop.refrence.current[index] = el;
                 }}
-                className="flex gap-1 items-center w-full hover:bg-white cursor-pointer active:bg-indigo-400"
+                className="flex gap-1 items-center w-full p-2 hover:bg-white cursor-pointer active:bg-indigo-400"
                 onClick={() => { handleViewClick(index) }}
               >
                 <i className={ele.ico}></i>
