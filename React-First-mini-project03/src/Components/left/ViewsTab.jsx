@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Search from '../Utilities/Search';
 
 
 const LeftSection = (prop) => {
   function handleViewClick(index) {
+    prop.prevref(prop.midtop.id)
     prop.status(prop.views[index])
   }
   return (
@@ -16,11 +17,14 @@ const LeftSection = (prop) => {
         <h1 className='ml-3 text-base font-black'>Views</h1>
         <div className="text-base font-light flex flex-col justify-start items-center gap-3">
           {
-            prop.views.map((ele, index) => (              
+            prop.views.map((ele, index) => (
               <div
                 key={index}
+                ref={(el) => {
+                  prop.refrence.current[index] = el;
+                }}
                 className="flex gap-1 items-center w-full hover:bg-white cursor-pointer active:bg-indigo-400"
-                onClick={()=>{handleViewClick(index)}}
+                onClick={() => { handleViewClick(index) }}
               >
                 <i className={ele.ico}></i>
                 <h1 className="font-light">{ele.name}</h1>
