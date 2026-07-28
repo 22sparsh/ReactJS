@@ -4,6 +4,11 @@ import ActiveViewTab from "./Mid/ActiveViewTab";
 import NoteArea from "./Right/NoteArea";
 
 const AppLayout = () => {
+
+  // ==========================================
+  // VIEWS
+  // ==========================================
+
   const views = [
     {
       id: 0,
@@ -27,9 +32,10 @@ const AppLayout = () => {
     },
   ];
 
-  // --------------------------------
+
+  // ==========================================
   // ACTIVE VIEW
-  // --------------------------------
+  // ==========================================
 
   const [activeViewId, setActiveViewId] = useState(
     views[0].id
@@ -39,61 +45,70 @@ const AppLayout = () => {
     (view) => view.id === activeViewId
   );
 
-  // --------------------------------
-  // ALL SAVED NOTES
-  // --------------------------------
+
+  // ==========================================
+  // ALL NOTES
+  // ==========================================
 
   const [notes, setNotes] = useState([]);
 
-  // --------------------------------
-  // CURRENTLY SELECTED SAVED NOTE
-  // --------------------------------
 
-  const [selectedNoteId, setSelectedNoteId] = useState(null);
+  // ==========================================
+  // SELECTED NOTE
+  // ==========================================
 
-  // --------------------------------
+  const [selectedNoteId, setSelectedNoteId] =
+    useState(null);
+
+
+  // ==========================================
   // TEMPORARY DRAFT
-  // --------------------------------
-  // This is NOT inside notes[].
-  // It only exists while the user is creating a new note.
+  // ==========================================
 
-  const [draftNote, setDraftNote] = useState(null);
+  const [draftNote, setDraftNote] =
+    useState(null);
 
-  // --------------------------------
+
+  // ==========================================
   // CREATE / START NEW NOTE
-  // --------------------------------
+  // ==========================================
 
   function createNote() {
-    // Don't create another draft
-    // if one is already being written.
+
+    // If a draft is already open,
+    // don't create another draft.
     if (draftNote) {
       return;
     }
 
-    // Start an empty temporary draft.
+    // Create temporary draft.
+    // This is NOT added to notes[] yet.
     setDraftNote({
       title: "",
       content: "",
     });
 
-    // No saved note is selected while
-    // the user is writing a new draft.
+    // No saved note is selected
+    // while creating a new note.
     setSelectedNoteId(null);
   }
 
-  // --------------------------------
+
+  // ==========================================
   // UPDATE DRAFT
-  // --------------------------------
+  // ==========================================
 
   function updateDraft(updates) {
+
     const updatedDraft = {
       ...draftNote,
       ...updates,
     };
 
-    // --------------------------------
-    // CHECK IF DRAFT IS STILL EMPTY
-    // --------------------------------
+
+    // ------------------------------------------
+    // CHECK IF DRAFT IS EMPTY
+    // ------------------------------------------
 
     const hasTitle =
       updatedDraft.title.trim().length > 0;
@@ -101,20 +116,23 @@ const AppLayout = () => {
     const hasContent =
       updatedDraft.content.trim().length > 0;
 
-    // --------------------------------
-    // IF BOTH ARE EMPTY
-    // KEEP IT AS A DRAFT
-    // --------------------------------
+
+    // ------------------------------------------
+    // STILL EMPTY
+    // ------------------------------------------
 
     if (!hasTitle && !hasContent) {
+
       setDraftNote(updatedDraft);
+
       return;
     }
 
-    // --------------------------------
+
+    // ------------------------------------------
     // USER HAS ENTERED SOMETHING
-    // NOW CREATE REAL NOTE
-    // --------------------------------
+    // CREATE REAL NOTE
+    // ------------------------------------------
 
     const now = new Date();
 
@@ -136,30 +154,52 @@ const AppLayout = () => {
       isTrashed: false,
     };
 
-    // Add the note to real notes
+
+    // Add new note
     setNotes((previousNotes) => [
       ...previousNotes,
       newNote,
     ]);
 
-    // Select the newly created note
+
+    // Automatically select new note
     setSelectedNoteId(newNote.id);
 
-    // Draft is no longer needed
+
+    // Draft is now converted
+    // into a real note.
     setDraftNote(null);
   }
 
-  // --------------------------------
+
+  // ==========================================
+  // SELECT EXISTING NOTE
+  // ==========================================
+
+  function selectNote(noteId) {
+
+    // Remove any empty draft
+    setDraftNote(null);
+
+    // Select clicked note
+    setSelectedNoteId(noteId);
+  }
+
+
+  // ==========================================
   // UPDATE EXISTING NOTE
-  // --------------------------------
+  // ==========================================
 
   function updateNote(noteId, updates) {
+
     setNotes((previousNotes) =>
       previousNotes.map((note) =>
         note.id === noteId
           ? {
               ...note,
+
               ...updates,
+
               updatedAt: new Date(),
             }
           : note
@@ -167,41 +207,223 @@ const AppLayout = () => {
     );
   }
 
-  // --------------------------------
-  // SELECT EXISTING NOTE
-  // --------------------------------
 
-  function selectNote(noteId) {
-    // If user selects an existing note,
-    // discard an empty draft.
-    setDraftNote(null);
+  // ==========================================
+  // STAR / UNSTAR NOTE
+  // ==========================================
 
-    setSelectedNoteId(noteId);
+  function toggleStarNote(noteId) {
+
+    setNotes((previousNotes) =>
+      previousNotes.map((note) =>
+        note.id === noteId
+          ? {
+              ...note,
+
+              isStarred: !note.isStarred,
+
+              updatedAt: new Date(),
+            }
+          : note
+      )
+    );
   }
 
-  // --------------------------------
-  // FIND SELECTED NOTE
-  // --------------------------------
+
+  // ==========================================
+  // ARCHIVE NOTE
+  // ==========================================
+
+  function archiveNote(noteId) {
+
+    setNotes((previousNotes) =>
+      previousNotes.map((note) =>
+        note.id === noteId
+          ? {
+              ...note,
+
+              isArchived: true,
+
+              updatedAt: new Date(),
+            }
+          : note
+      )
+    );
+
+
+    // If current note is archived,
+    // remove it from editor.
+    if (selectedNoteId === noteId) {
+
+      setSelectedNoteId(null);
+    }
+  }
+
+
+  // ==========================================
+  // UNARCHIVE NOTE
+  // ==========================================
+
+  function unarchiveNote(noteId) {
+
+    setNotes((previousNotes) =>
+      previousNotes.map((note) =>
+        note.id === noteId
+          ? {
+              ...note,
+
+              isArchived: false,
+
+              updatedAt: new Date(),
+            }
+          : note
+      )
+    );
+  }
+
+
+  // ==========================================
+  // MOVE NOTE TO TRASH
+  // ==========================================
+
+  function moveToTrash(noteId) {
+
+    setNotes((previousNotes) =>
+      previousNotes.map((note) =>
+        note.id === noteId
+          ? {
+              ...note,
+
+              isTrashed: true,
+
+              updatedAt: new Date(),
+            }
+          : note
+      )
+    );
+
+
+    // Remove from editor
+    // if currently selected.
+    if (selectedNoteId === noteId) {
+
+      setSelectedNoteId(null);
+    }
+  }
+
+
+  // ==========================================
+  // RESTORE NOTE FROM TRASH
+  // ==========================================
+
+  function restoreFromTrash(noteId) {
+
+    setNotes((previousNotes) =>
+      previousNotes.map((note) =>
+        note.id === noteId
+          ? {
+              ...note,
+
+              isTrashed: false,
+
+              updatedAt: new Date(),
+            }
+          : note
+      )
+    );
+  }
+
+
+  // ==========================================
+  // PERMANENTLY DELETE NOTE
+  // ==========================================
+
+  function permanentlyDeleteNote(noteId) {
+
+    setNotes((previousNotes) =>
+      previousNotes.filter(
+        (note) => note.id !== noteId
+      )
+    );
+
+
+    // Remove selected note
+    // if it was deleted permanently.
+    if (selectedNoteId === noteId) {
+
+      setSelectedNoteId(null);
+    }
+  }
+
+
+  // ==========================================
+  // FILTER NOTES BASED ON ACTIVE VIEW
+  // ==========================================
+
+  const visibleNotes = notes.filter((note) => {
+  switch (activeViewId) {
+    case 0:
+      return (
+        !note.isArchived &&
+        !note.isTrashed
+      );
+
+    case 1:
+      return (
+        note.isStarred &&
+        !note.isArchived &&
+        !note.isTrashed
+      );
+
+    case 2:
+      return (
+        note.isArchived &&
+        !note.isTrashed
+      );
+
+    case 3:
+      return note.isTrashed;
+
+    default:
+      return false;
+  }
+});
+
+
+  // ==========================================
+  // GET SELECTED NOTE
+  // ==========================================
 
   const selectedNote = notes.find(
     (note) => note.id === selectedNoteId
   );
 
-  // --------------------------------
-  // NOTE TO SHOW IN EDITOR
-  // --------------------------------
 
-  // If a draft exists, show draft.
+  // ==========================================
+  // NOTE TO SHOW IN EDITOR
+  // ==========================================
+
+  // If user is creating a new note,
+  // show draft.
+  //
   // Otherwise show selected saved note.
 
-  const noteToEdit = draftNote || selectedNote;
+  const noteToEdit =
+    draftNote || selectedNote;
+
+
+  // ==========================================
+  // UI
+  // ==========================================
 
   return (
+
     <div className="grid text-zinc-800 grid-rows-[1fr_auto] grid-cols-[15vw_14vw_1fr] bg-white h-full">
 
-      {/* -------------------------------- */}
+
+      {/* ================================== */}
       {/* LEFT COLUMN */}
-      {/* -------------------------------- */}
+      {/* ================================== */}
 
       <ViewsTab
         views={views}
@@ -209,37 +431,63 @@ const AppLayout = () => {
         onViewChange={setActiveViewId}
       />
 
-      {/* -------------------------------- */}
+
+      {/* ================================== */}
       {/* MIDDLE COLUMN */}
-      {/* -------------------------------- */}
+      {/* ================================== */}
 
       <ActiveViewTab
         activeView={activeView}
-        notes={notes}
+
+        notes={visibleNotes}
+
         selectedNoteId={selectedNoteId}
+
         onAddNote={createNote}
+
         onSelectNote={selectNote}
+
+        onToggleStar={toggleStarNote}
+
+        onArchive={archiveNote}
+
+        onUnarchive={unarchiveNote}
+
+        onMoveToTrash={moveToTrash}
+
+        onRestoreFromTrash={restoreFromTrash}
+
+        onPermanentlyDelete={
+          permanentlyDeleteNote
+        }
       />
 
-      {/* -------------------------------- */}
+
+      {/* ================================== */}
       {/* RIGHT COLUMN */}
-      {/* -------------------------------- */}
+      {/* ================================== */}
 
       <NoteArea
         note={noteToEdit}
+
         isDraft={Boolean(draftNote)}
+
         onUpdateNote={updateNote}
+
         onUpdateDraft={updateDraft}
       />
 
-      {/* -------------------------------- */}
+
+      {/* ================================== */}
       {/* FOOTER */}
-      {/* -------------------------------- */}
+      {/* ================================== */}
 
       <div className="col-span-3 border-t-2 border-gray-200 p-2">
+
         <div className="rounded-full bg-amber-500 w-6 h-6">
           d
         </div>
+
       </div>
 
     </div>

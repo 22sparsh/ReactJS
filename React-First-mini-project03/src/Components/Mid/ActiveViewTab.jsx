@@ -1,66 +1,85 @@
 import React from "react";
 import Search from "../Utilities/Search";
+import NoteCard from "../Right/NoteCard";
 
-const ActiveViewTab = (prop) => {
+const ActiveViewTab = ({
+  activeView,
+  notes,
+  selectedNoteId,
 
-  // --------------------------------
-  // ADD NEW NOTE
-  // --------------------------------
+  onAddNote,
+  onSelectNote,
 
-  function handleAddNote() {
-    prop.onAddNote();
-  }
+  onToggleStar,
+  onArchive,
+  onMoveToTrash,
 
-  // --------------------------------
-  // SELECT NOTE
-  // --------------------------------
-
-  function handleSelectNote(noteId) {
-    prop.onSelectNote(noteId);
-  }
-
+  onUnarchive,
+  onRestoreFromTrash,
+  onPermanentlyDelete,
+}) => {
   return (
     <div className="border-r text-zinc-800 border-gray-300 flex flex-col min-h-0">
 
-      {/* -------------------------------- */}
-      {/* HEADER */}
-      {/* -------------------------------- */}
+      {/* ========================================= */}
+      {/* ACTIVE VIEW HEADER */}
+      {/* ========================================= */}
 
       <div className="flex flex-col h-fit border-b items-center pb-2 border-gray-400">
 
+        {/* ----------------------------------------- */}
+        {/* TITLE + ADD BUTTON */}
+        {/* ----------------------------------------- */}
+
         <div className="flex h-fit w-full justify-between gap-2 p-3">
 
-          {/* VIEW NAME */}
+          {/* ACTIVE VIEW NAME */}
 
           <div className="flex justify-between h-fit gap-1 items-center">
 
             <i
-              className={`${prop.activeView.ico} fa-lg`}
+              className={`${activeView.ico} fa-lg`}
               style={{ marginLeft: 0 }}
             ></i>
 
             <h1 className="text-[1.3vw]">
-              {prop.activeView.name}
+              {activeView.name}
             </h1>
 
           </div>
 
-          {/* ADD BUTTON */}
 
-          <div>
+          {/* ADD NOTE BUTTON */}
 
-            <button
-              className="bg-blue-400 w-2 h-2 flex justify-center items-center text-white text-xl rounded-full p-4 cursor-pointer active:bg-blue-200 hover:bg-blue-900 hover:text-white"
-              onClick={handleAddNote}
-            >
-              +
-            </button>
-
-          </div>
+          <button
+            type="button"
+            className="
+              bg-blue-400
+              w-2
+              h-2
+              flex
+              justify-center
+              items-center
+              text-white
+              text-xl
+              rounded-full
+              p-4
+              cursor-pointer
+              active:bg-blue-200
+              hover:bg-blue-900
+              hover:text-white
+            "
+            onClick={onAddNote}
+          >
+            +
+          </button>
 
         </div>
 
+
+        {/* ----------------------------------------- */}
         {/* SEARCH */}
+        {/* ----------------------------------------- */}
 
         <div>
           <Search />
@@ -68,60 +87,60 @@ const ActiveViewTab = (prop) => {
 
       </div>
 
-      {/* -------------------------------- */}
+
+      {/* ========================================= */}
       {/* NOTES LIST */}
-      {/* -------------------------------- */}
+      {/* ========================================= */}
 
       <div className="flex-1 overflow-y-auto">
 
-        {prop.notes.length === 0 ? (
+        {notes.length === 0 ? (
 
-          // No saved notes
+          /* --------------------------------------- */
+          /* EMPTY STATE */
+          /* --------------------------------------- */
+
           <div className="p-5 text-center text-gray-500">
             No notes yet
           </div>
 
         ) : (
 
-          // Saved notes
-          prop.notes.map((note) => (
+          /* --------------------------------------- */
+          /* NOTES */
+          /* --------------------------------------- */
 
-            <div
+          notes.map((note) => (
+
+            <NoteCard
               key={note.id}
-              onClick={() =>
-                handleSelectNote(note.id)
+
+              note={note}
+
+              activeViewId={activeView.id}
+
+              isSelected={
+                note.id === selectedNoteId
               }
-              className={`
-                p-3
-                border-b
-                border-gray-200
-                cursor-pointer
-                transition
-                ${
-                  note.id === prop.selectedNoteId
-                    ? "bg-gray-200"
-                    : "hover:bg-gray-100"
-                }
-              `}
-            >
 
-              {/* NOTE TITLE */}
+              onSelectNote={onSelectNote}
 
-              <h2 className="font-semibold truncate">
+              onToggleStar={onToggleStar}
 
-                {note.title || "Untitled"}
+              onArchive={onArchive}
 
-              </h2>
+              onMoveToTrash={onMoveToTrash}
 
-              {/* NOTE CONTENT PREVIEW */}
+              onUnarchive={onUnarchive}
 
-              <p className="text-sm text-gray-500 truncate mt-1">
+              onRestoreFromTrash={
+                onRestoreFromTrash
+              }
 
-                {note.content || "No content"}
-
-              </p>
-
-            </div>
+              onPermanentlyDelete={
+                onPermanentlyDelete
+              }
+            />
 
           ))
 
