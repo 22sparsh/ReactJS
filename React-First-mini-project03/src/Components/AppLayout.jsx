@@ -484,8 +484,8 @@ const AppLayout = () => {
 
       <div className="col-span-3 border-t-2 border-gray-200 p-2">
 
-        <div className="rounded-full bg-amber-500 w-6 h-6">
-          d
+        <div className=" bg-amber-500 w-fit rounded-xl pl-2 pr-2">
+          sparsh
         </div>
 
       </div>
