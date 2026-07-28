@@ -1,54 +1,48 @@
-import React, { useEffect, useRef, useState } from 'react'
-import LeftSection from './left/ViewsTab'
-import MidSection from './Mid/ActiveViewTab'
-import Note from './Right/Note'
+import { useState } from "react";
+import ViewsTab from "./left/ViewsTab";
+import ActiveViewTab from "./Mid/ActiveViewTab";
+import NoteArea from "./Right/NoteArea";
 
 const AppLayout = () => {
-    let views = [
+  let views = [
     {
-      id:0,
+      id: 0,
       name: "Notes",
       ico: "fa-regular fa-file-lines w-5  text-center text-base ml-2",
-      content:{}
     },
     {
-      id:1,
+      id: 1,
       name: "Starred",
       ico: "fa-regular fa-star w-5  text-center text-base ml-2",
-      content:{}
     },
     {
-      id:2,
+      id: 2,
       name: "Archived",
       ico: "fa-regular fa-bookmark w-5  text-center text-base ml-2 ",
-      content:{}
     },
     {
-      id:3,
+      id: 3,
       name: "Trash",
       ico: "fa-regular fa-trash-can w-5  text-center text-base ml-2",
-      content:{}
-    }
-  ]
-  const [activeview, setactiveview] = useState(views[0])
-  const [prevrefid, setprevrefid] = useState(0)
-  const viewsR = useRef({})
-  useEffect(() => {
-    viewsR.current[prevrefid]?.classList.remove("bg-white");
-    viewsR.current[activeview.id]?.classList.add("bg-white");
-  }, [activeview])
-  
-  
-    return (
-        <div className="grid  text-zinc-800 grid-rows-[1fr_auto] grid-cols-[250px_260px_1fr] bg-white h-screen">
-            <LeftSection views={views} status={setactiveview}  refrence={viewsR} prevref={setprevrefid} midtop={activeview} />
-            <MidSection status={activeview} />
-            <Note />
-            <div className="col-span-3 border-t-2  border-gray-200">
-                Footer
-            </div>
-        </div>
-    )
-}
+    },
+  ];
+  const [activeViewId, setActiveViewId] = useState(views[0].id);
+  const activeView = views.find((view) => view.id === activeViewId);
 
-export default AppLayout
+  return (
+    <div className="grid  text-zinc-800 grid-rows-[1fr_auto] grid-cols-[15vw_14vw_1fr] bg-white h-full">
+      <ViewsTab
+        views={views}
+        activeViewId={activeViewId}
+        onViewChange={setActiveViewId}
+      />
+      <ActiveViewTab activeView={activeView} />
+      <NoteArea />
+      <div className="col-span-3 border-t-2  border-gray-200 p-2">
+        <div className="rounded-full bg-amber-500 w-6 h-6">d</div>
+      </div>
+    </div>
+  );
+};
+
+export default AppLayout;
