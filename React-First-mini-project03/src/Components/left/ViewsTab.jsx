@@ -18,7 +18,7 @@ const ViewsTab = (prop) => {
             <div
               key={view.id}
               onClick={() => handleViewClick(view.id)}
-              className={`flex items-center p-2 bg red-900 cursor-pointer  ${
+              className={`flex items-center p-1 bg red-900 cursor-pointer  ${
                 view.id === prop.activeViewId ? "bg-white" : ""
               }`}
             >
