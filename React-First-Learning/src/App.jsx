@@ -1,9 +1,10 @@
 import './App.css'
+import axios from 'axios'
 
 function App() {
   async function getData() {  
-      const response= await fetch("https://jsonplaceholder.typicode.com/todos/1")
-      console.log(response);
+    const {data}= await axios.get("https://jsonplaceholder.typicode.com/todos/1")
+      console.log(data);
       
     
   }
@@ -11,7 +12,7 @@ function App() {
     <>
     <div className="">
       <button 
-      className='bg-amber-50/50 p-3 rounded-2xl'
+      className='bg-amber-50/50 p-3 rounded-2xl active:scale-50'
       onClick={getData}
       >Get Data
       </button>
