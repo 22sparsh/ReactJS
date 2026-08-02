@@ -9,7 +9,7 @@ const About = () => {
         onClick={()=>{
           navigate('/')
         }}
-        className="bg-indigo-600 text-2xl p-3 rounded-xl cursor-pointer active:scale-95"
+        className="bg-indigo-800 border-2 border-s-amber-900 text-2xl p-3 rounded-xl cursor-pointer active:scale-95"
       >
         Return to Home
       </button>
