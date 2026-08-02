@@ -7,6 +7,8 @@ import Card from "./components/Cards/Card"
 import NavBar from "./components/NavBar";
 import NotFound from "./pages/NotFound";
 import Women from "./pages/Women";
+import Courses from "./pages/Courses";
+import CourseDetails from "./pages/CourseDetails";
 
 function App() {  
   return (
@@ -15,6 +17,8 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/about" element={<About />} />
+      <Route path="/courses" element={<Courses />} />
+      <Route path="/courses/:courseId" element={<CourseDetails />} />
       <Route path="/product" element={<Product />} > 
       <Route path="women" element={<Women />} /></Route>
       
